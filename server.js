@@ -1,3 +1,6 @@
+const express = require('express');
+const app = express();
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -134,4 +137,9 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
 	.then(findMarkAndDelete)
 	.then(findKennyAndDelete)
 	.then(findBennyAndRemove)
-	.catch(console.log.bind(console))
+  .catch(console.log.bind(console))
+  
+app.use(express.static('./'));
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+});
