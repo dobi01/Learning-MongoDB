@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 8010;
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -142,4 +143,8 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
 app.use(express.static('./'));
 app.get('/', (req, res) => {
   res.sendFile('index.html');
+});
+
+app.listen(port, () => {
+  console.log(`App is running on port ${port}`);
 });
