@@ -83,16 +83,16 @@ const findSpecificRecord = function() {
 
 const updadeUserPassword = function() {
 	return User.findOne({ username: 'Kenny_the_boy' })
-		.then(function(user) {
-			console.log('Old password is ' + user.password);
-			console.log('Name ' + user.name);
-			user.password = 'newPassword';
-			console.log('New password is ' + user.password);
-			return user.save(function(err) {
-				if (err) throw err;
-				console.log('Username ' + user.name + ' was successfully updated');
-			})
+	.then(function(user) {
+		console.log('Old password is ' + user.password);
+		console.log('Name ' + user.name);
+		user.password = 'newPassword';
+		console.log('New password is ' + user.password);
+		return user.save(function(err) {
+			if (err) throw err;
+			console.log('Username ' + user.name + ' was successfully updated');
 		})
+	})
 }
 
 const updateUsername = function() {
@@ -104,30 +104,29 @@ const updateUsername = function() {
 
 const findMarkAndDelete = function() {
 	return User.findOne({ username: 'Mark_the_boy' })
-		.then(function(user) {
-			return user.remove(function() {
-				console.log('User successfully deleted');
-			});
-		})
+	.then(function(user) {
+		return user.remove(function() {
+			console.log('User successfully deleted');
+		});
+	})
 }
 
 const findKennyAndDelete = function() {
 	return User.findOne({ username: 'Kenny_the_boy' })
-		.then(function(user) {
-			return user.remove(function() {
-				console.log('User successfully deleted');
-			});
+	.then(function(user) {
+		return user.remove(function() {
+			console.log('User successfully deleted');
 		});
+	});
 }
 
 const findBennyAndRemove = function() {
-
 	return User.findOneAndRemove({ username: 'Benny_the_man' })
-		.then(function(user) {
-			return user.remove(function() {
-				console.log('User successfully deleted');
-			});
+	.then(function(user) {
+		return user.remove(function() {
+			console.log('User successfully deleted');
 		});
+	});
 }
 
 Promise.all([kenny.save(), mark.save(), benny.save()])
@@ -139,7 +138,7 @@ Promise.all([kenny.save(), mark.save(), benny.save()])
 	.then(findKennyAndDelete)
 	.then(findBennyAndRemove)
   .catch(console.log.bind(console))
-  
+
 app.use(express.static('./'));
 app.get('/', (req, res) => {
   res.sendFile('index.html');
